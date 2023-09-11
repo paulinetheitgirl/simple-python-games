@@ -9,4 +9,6 @@ This project was developed on python 3.11.
 pip install -r requirements.txt
 python main.py
 ```
-Click or press a number key to select a game
+Click or press a number key to select a game.
+
+![menu](images/screenshots/menu.png)

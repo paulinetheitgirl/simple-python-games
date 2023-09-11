@@ -38,6 +38,7 @@ def on_mouse_down(pos):
 def on_key_down(key):
     if keys.ESCAPE == key:
         if mode != menu:
+            mode.unschedule()
             setMode(menu)
         else:
             exit()

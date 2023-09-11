@@ -18,8 +18,14 @@ def draw():
     screen.fill("green4")
     fox.draw()
     coin.draw()
-    screen.draw.text(f'Collect the coins!\nTime left: {timer}\nScore: {score}\nPress Esc to end game',
-                     color="black", topleft=(10, 10))
+    screen.draw.text("Collect the coins!\nArrow keys to move\nPress Esc to end game",
+                    color="black",
+                    topleft=(10, 10),
+                    antialias=False)
+    screen.draw.text(f'Time left: {timer}\nScore: {score}',
+                    color="black",
+                    topright=(screen.surface.get_width() - 10, 10),
+                    antialias=False)
     if game_over:
         screen.fill("darkorange")
         screen.draw.text(f'Final score: {score}',
@@ -55,6 +61,10 @@ def update():
         score += 10
         place_coin()
 
+def unschedule():
+    clock.unschedule(decTimer)
+    clock.unschedule(times_up)
+
 def decTimer():
     global timer
     timer -= 1
@@ -66,9 +76,10 @@ def setup(pgzero_objects, _modeFunc):
     modeFunc = _modeFunc
 
 def restart():
-    global game_over, timer
+    global game_over, timer, score
     game_over = False
     timer = 15.0
+    score = 0
     clock.schedule(times_up, timer)
     clock.schedule_interval(decTimer, 1)
     place_coin()

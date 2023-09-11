@@ -44,6 +44,9 @@ def on_mouse_down(pos):
 def update():
     pass
 
+def unschedule():
+    pass
+
 def restart():
     global score
     score = 0
