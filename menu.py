@@ -1,8 +1,8 @@
 import re, os
 from pygame import image, transform, Color, Rect, Surface
-import fruitshooter, coincollector
+import fruitshooter, coincollector, starrynight
 
-GAMES = ["Fruit Shooter", "Coin Collector"]
+GAMES = ["Fruit Shooter", "Coin Collector", "Starry Night"]
 menuRects = []
 backgroundImage = image.load(os.path.abspath("images/background/isis-franca-AuWSzM7kZDA-unsplash.jpg"))
 
@@ -14,7 +14,7 @@ def draw():
     centerWidth = screen.surface.get_width() / 2
     centerHeight = screen.surface.get_height() / 2
     screen.draw.text("Let's play some Pygame Zero games!",
-                     center=(centerWidth,centerHeight - 48),
+                     center=(centerWidth,centerHeight - (48 * len(GAMES))),
                      fontsize=48,
                      color="white")
     for i in range(len(GAMES)):
@@ -41,6 +41,8 @@ def on_mouse_down(pos):
         modeFunc(fruitshooter)
     if menuRects[1].collidepoint(pos):
         modeFunc(coincollector)
+    if menuRects[2].collidepoint(pos):
+        modeFunc(starrynight)
 
 def update():
     pass

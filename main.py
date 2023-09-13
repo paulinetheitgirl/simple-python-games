@@ -1,5 +1,5 @@
 import pgzrun
-import menu, fruitshooter, coincollector
+import menu, fruitshooter, coincollector, starrynight
 
 mode = menu
 startup = True
@@ -25,6 +25,7 @@ def update():
         menu.setup(pgzero_objects, setMode)
         fruitshooter.setup(pgzero_objects, setMode)
         coincollector.setup(pgzero_objects, setMode)
+        starrynight.setup(pgzero_objects, setMode)
         startup = False
 
     mode.update()

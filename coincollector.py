@@ -1,4 +1,3 @@
-import pgzrun
 from random import randint
 from pgzero.builtins import Actor, keyboard, keys, sounds, clock, music
 
