@@ -1,4 +1,5 @@
 import pgzrun
+from pgzero.builtins import Actor, images, keyboard, keys
 import menu, fruitshooter, coincollector, starrynight
 
 mode = menu

@@ -1,5 +1,5 @@
 import random
-from pgzero.builtins import animate
+from pgzero.builtins import animate, Actor, keys
 
 # Pygame named colors: https://www.pygame.org/docs/ref/color_list.html
 FONT_COLOR = (255, 255, 255)
@@ -20,10 +20,11 @@ stars = []
 animations = []
 
 def draw():
+    g = globals()
     global stars, current_level, game_over, game_complete
-    screen.clear()
-    screen.blit("space", (0,0))
-    screen.draw.text(f'Catch the RED star!\nPress Esc to exit',
+    g["screen"].clear()
+    g["screen"].blit("space", (0,0))
+    g["screen"].draw.text(f'Catch the RED star!\nPress Esc to exit',
                          topleft=(10, 10))
     if game_over:
         display_message("GAME OVER", "Try again")
@@ -35,11 +36,12 @@ def draw():
             star.draw()
 
 def display_message(heading_text, sub_heading_text):
-    screen.draw.text(heading_text,
+    g = globals()
+    g["screen"].draw.text(heading_text,
                      fontsize=60,
                      center=CENTER,
                      color=FONT_COLOR)
-    screen.draw.text(sub_heading_text,
+    g["screen"].draw.text(sub_heading_text,
                      fontsize=30,
                      center=(CENTER_X, CENTER_Y + 30),
                      color=FONT_COLOR)

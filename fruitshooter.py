@@ -1,6 +1,5 @@
-import pgzrun
 import random
-from pgzero.builtins import Actor, keyboard, keys, sounds, clock, music
+from pgzero.builtins import Actor
 from pygame import Rect
 
 fruitActors = [Actor("apple"), Actor("orange"), Actor("pineapple")]
@@ -11,16 +10,17 @@ result = ""
 
 # draw is from Pgzero
 def draw():
-    centerWidth = screen.surface.get_width()
-    centerHeight = screen.surface.get_height()
-    screen.fill("black")
-    screen.draw.text("Click the fruit to shoot\nScore: " +
+    g = globals()
+    centerWidth = g["screen"].surface.get_width()
+    centerHeight = g["screen"].surface.get_height()
+    g["screen"].fill("black")
+    g["screen"].draw.text("Click the fruit to shoot\nScore: " +
                      str(score) +
                      "\nPress Esc to end game", topleft=(0,0), color="white")
     if result == "hit":
-        screen.draw.textbox("Good shot!", textBox, center=(centerWidth/2, centerHeight/2), color="green")
+        g["screen"].draw.textbox("Good shot!", textBox, center=(centerWidth/2, centerHeight/2), color="green")
     elif result == "miss":
-        screen.draw.textbox("Try again", textBox, center=(centerWidth/2, centerHeight/2), color="orange")
+        g["screen"].draw.textbox("Try again", textBox, center=(centerWidth/2, centerHeight/2), color="orange")
     currentFruit.draw()
 
 def place_fruit():

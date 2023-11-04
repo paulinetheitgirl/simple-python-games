@@ -1,5 +1,5 @@
 import re, os
-from pygame import image, transform, Color, Rect, Surface
+from pygame import image, transform, Color, Rect
 import fruitshooter, coincollector, starrynight
 
 GAMES = ["Fruit Shooter", "Coin Collector", "Starry Night"]
@@ -8,28 +8,29 @@ backgroundImage = image.load(os.path.abspath("images/background/isis-franca-AuWS
 
 # draw is from Pgzero
 def draw():
+    g = globals()
     global backgroundImage
-    background = transform.scale(backgroundImage, screen.surface.get_size())
-    screen.blit(background, (0, 0))
-    centerWidth = screen.surface.get_width() / 2
-    centerHeight = screen.surface.get_height() / 2
-    screen.draw.text("Let's play some Pygame Zero games!",
+    background = transform.scale(backgroundImage, g["screen"].surface.get_size())
+    g["screen"].blit(background, (0, 0))
+    centerWidth = g["screen"].surface.get_width() / 2
+    centerHeight = g["screen"].surface.get_height() / 2
+    g["screen"].draw.text("Let's play some Pygame Zero games!",
                      center=(centerWidth,centerHeight - (48 * len(GAMES))),
                      fontsize=48,
                      color="white")
     for i in range(len(GAMES)):
         menuRect = Rect((centerWidth / 2, centerHeight + (48 * i)),
                         (centerWidth, 24 + (i + 1)))
-        screen.draw.rect(menuRect, color="black")
-        screen.surface.fill(Color("limegreen"), menuRect)
-        screen.draw.textbox(f'{i + 1}. {GAMES[i]}', menuRect, color="white")
+        g["screen"].draw.rect(menuRect, color="black")
+        g["screen"].surface.fill(Color("limegreen"), menuRect)
+        g["screen"].draw.textbox(f'{i + 1}. {GAMES[i]}', menuRect, color="white")
         menuRects.insert(i, menuRect)
-    screen.draw.text("Press Esc to close",
+    g["screen"].draw.text("Press Esc to close",
                      center=(centerWidth,centerHeight + (48 * len(GAMES))),
                      color="white")
-    screen.draw.text("Background image: Isis França (https://unsplash.com/@isisfra)\n" +
+    g["screen"].draw.text("Background image: Isis França (https://unsplash.com/@isisfra)\n" +
                      "All other images from DK Publishing\n(https://www.dk.com/uk/information/the-python-games-resource-pack/)",
-                     center=(centerWidth, screen.surface.get_height() - 100),
+                     center=(centerWidth, g["screen"].surface.get_height() - 100),
                      fontsize=24,
                      color="white")
 

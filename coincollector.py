@@ -1,5 +1,5 @@
 from random import randint
-from pgzero.builtins import Actor, keyboard, keys, sounds, clock, music
+from pgzero.builtins import Actor, keyboard, clock
 
 WIDTH_PX = 400
 HEIGHT_PX = 400
@@ -14,23 +14,24 @@ coin = Actor("coin")
 coin.pos = 200, 300
 
 def draw():
-    screen.fill("green4")
+    g = globals()
+    g["screen"].fill("green4")
     fox.draw()
     coin.draw()
-    screen.draw.text("Collect the coins!\nArrow keys to move\nPress Esc to end game",
+    g["screen"].draw.text("Collect the coins!\nArrow keys to move\nPress Esc to end game",
                     color="black",
                     topleft=(10, 10),
                     antialias=False)
-    screen.draw.text(f'Time left: {timer}\nScore: {score}',
+    g["screen"].draw.text(f'Time left: {timer}\nScore: {score}',
                     color="black",
-                    topright=(screen.surface.get_width() - 10, 10),
+                    topright=(g["screen"].surface.get_width() - 10, 10),
                     antialias=False)
     if game_over:
-        screen.fill("darkorange")
-        screen.draw.text(f'Final score: {score}',
+        g["screen"].fill("darkorange")
+        g["screen"].draw.text(f'Final score: {score}',
                          center=(WIDTH_PX, HEIGHT_PX),
                          fontsize=60)
-        screen.draw.text(f'Press Esc to exit',
+        g["screen"].draw.text(f'Press Esc to exit',
                          center=(WIDTH_PX, HEIGHT_PX + 60))
 
 
